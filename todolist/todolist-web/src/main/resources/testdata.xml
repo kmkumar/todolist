@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ToDoList xmlns="http://schema.rackspace.com/service/todolist/v1"
+	xmlns:ns2="http://schema.rackspace.com/service/status/v1">
+	<toDoListId>1</toDoListId>
+	<userId>user2</userId>
+	<title>TodoList-1</title>
+	<task>
+		<taskId>1</taskId>
+		<toDoListId>1</toDoListId>
+		<title>task1</title>
+		<dueDate>2012-08-15+05:30</dueDate>
+		<status>O</status>
+	</task>
+</ToDoList>
+

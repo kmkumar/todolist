@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://schema.rackspace.com/service/todolist/v1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.rackspace.com/service/todolist/v1"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.0" id="TODOLIST">
+
+	<!-- COMPLEX TYPES -->
+	<xs:complexType name="Task">
+		<xs:annotation>
+			<xs:documentation>
+				The Entity Representing a task in a todolist
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="taskId"  type="xs:long"   minOccurs="0"/>
+			<xs:element name="toDoListId" type="xs:long"  minOccurs="0"/>
+			<xs:element name="title"   type="xs:string"  minOccurs="0"/>
+			<xs:element name="status"  type="xs:string"  minOccurs="0"/>
+			<xs:element name="dueDate" type="xs:date"  minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ToDoList">
+      <xs:sequence>
+		 <xs:element name="toDoListId" type="xs:long"  minOccurs="0"/>
+		 <xs:element name="userId"  type="xs:string"  minOccurs="0"/>
+		 <xs:element name="title"   type="xs:string"  minOccurs="0"/>
+         <xs:element name="task"    type="tns:Task" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   	</xs:complexType>
+   
+   	<xs:complexType name="ToDoLists">
+      <xs:sequence>
+         <xs:element name="toDoList" type="tns:ToDoList" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   	</xs:complexType>
+</xs:schema>

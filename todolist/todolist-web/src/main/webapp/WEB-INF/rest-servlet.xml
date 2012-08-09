@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+xmlns:oxm="http://www.springframework.org/schema/oxm" xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+   http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+<context:component-scan base-package="com.rackspace.services" />
+<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	<property name="messageConverters">		<list> <ref bean="marshallingHttpMessageConverter" /> </list>	</property></bean><bean id="marshallingHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">		<property name="marshaller" ref="marshaller" />		<property name="unmarshaller" ref="marshaller" /></bean>
+	<bean		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">		<property name="beanNames">			<value>toDoListServiceController</value>		</property>		<property name="interceptorNames">			<list></list>		</property>	</bean>
+
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">		<property name="contextPaths">		<value>			com.rackspace.schema.service.todolist.v1,			com.rackspace.schema.service.status.v1		</value>		</property>	</bean></beans>

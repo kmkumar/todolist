@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://schema.rackspace.com/service/status/v1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.rackspace.com/service/status/v1"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.0" id="TODOLIST">
+
+	<!-- COMPLEX TYPES -->
+	
+	<xs:complexType name="Status">
+      <xs:sequence>
+		 <xs:element name="statusMsg"  type="xs:string" />
+		 <xs:element name="errorCode"  type="xs:string" />
+		 <xs:element name="errorMsg"   type="xs:string" />
+      </xs:sequence>
+   	</xs:complexType>
+   
+</xs:schema>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+ 	
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${jboss.server.log.dir}/rackspaceservice.log</File>
+		<Append>true</Append>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${jboss.server.log.dir}/rackspaceservice.log.%d{yyyy-MM-dd}.%i.gz
+			</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+              <!-- or whenever the file size reaches 1GB -->
+              <maxFileSize>1GB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>			
+		</rollingPolicy>
+		
+        <layout class="ch.qos.logback.classic.PatternLayout">           
+            <Pattern>%d{yyyy-MM-dd;HH:mm:ss.SSS} [%thread] %-5level %class{36} %logger{36} [%M:%L] - %msg%n</Pattern>
+         </layout>
+	</appender>
+	
+
+	<appender name="performanceFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${jboss.server.log.dir}/rackspaceservice_perf.log</File>
+		<Append>true</Append>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${jboss.server.log.dir}/rackspaceservice.log_perf.%d{yyyy-MM-dd}.%i.gz
+			</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                 <!-- or whenever the file size reaches 50MB -->
+                 <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>			
+		</rollingPolicy>
+		
+        <layout class="ch.qos.logback.classic.PatternLayout">           
+            <Pattern>%d{yyyy-MM-dd;HH:mm:ss.SSS}|%msg%n</Pattern>     
+        </layout>
+
+	</appender>
+
+	<logger name="com.rackspace.services" level="DEBUG" />
+
+	<logger name="PERF_LOGGER">
+		<level value="INFO" />
+		<appender-ref ref="performanceFileAppender" />
+	</logger>
+
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
